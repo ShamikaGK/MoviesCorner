@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>MoviesCorner</title>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Salsa' rel='stylesheet'>
+  </head>
+  <body>
+    <nav>
+			<ul>
+		<!--		<li><a href="#">Sign in</a></li> -->
+		<li>
+		<% if(data==undefined || data.user==null){%>
+            <a href="/login">Sign in</a>
+        <%}else{%>
+          <a href="/logout">Sign out</a>
+        <% } %>
+			</li>
+				<li><a href="/myItems">My Movies</a></li>
+				<li><a href="#">Cart</a></li>
+			</ul>
+		</nav>
+  </body>
+</html>

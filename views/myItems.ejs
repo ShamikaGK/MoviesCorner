@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MoviesCorner</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Salsa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lemon' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Shojumaru' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+		<div class="myItems_header">
+    <% include partials/header.ejs %>
+	</div>
+	<div class="myItems_unav">
+    <% include partials/user_navigation.ejs %>
+	</div>
+    <main>
+		<div class="myitems">
+			<h2>Your saved movies!</h2>
+			<table>
+				<thead>
+				<th>Movie</th>
+				<th>Category</th>
+				<th></th>
+				<th>My Rating</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<% if(data.userItemList!=null){%>
+					<% for (let i=0; i< data.userItemList.length; i++){ %>
+						<tr>
+							<td><%= data.userItemList[i].itemName%></td>
+							<td><%= data.userItemList[i].catalogCategory%></td>
+							<td></td>
+							<td><%= data.userItemList[i].rating%></td>
+							<td>
+					<!--		<span class = "button1"><input type="button" onclick="window.location.href = 'item.html'" value="Watch Now"></span> -->
+								<form action="/categories/item/<%=data.userItemList[i].itemName%>/feedback" method="get"><input type="submit" value="Update"></form>
+							</td>
+							<td>
+								<%= data.userItemList[i].watched %>
+							</td>
+							<td>
+					<!--		<span class = "button1"><input type="button" onclick="window.location.href = 'myItems.html'" value="Delete"></span> -->
+								<form action="/myItems/delete/<%=data.userItemList[i].itemName%>" method="get"><input type="submit" value="Delete"></form>
+							</td>
+							</tr>
+					<% } %>
+		<!--		<% } %> -->
+		<!--		<tr>
+				<td>Knight and Day</td>
+				<td>Action</td>
+				<td></td>
+				<td>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+			</td>  -->
+		</tbody>
+			</table>
+			<section>
+				<p>Click <a class="itemsa" href="#">here </a>to share your description for a movie!</p>
+			</section>
+		</div>
+		</main>
+		<div class="myItems_snav">
+    <% include partials/site_navigation.ejs %>
+	</div>
+	<div class="myItems_footer">
+    <% include partials/footer.ejs %>
+	</div>
+  </body>
+</html>

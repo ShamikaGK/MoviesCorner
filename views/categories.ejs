@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MoviesCorner</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Salsa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lemon' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Shojumaru' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet'>
+  </head>
+  <body>
+		<div class="cat_header">
+    <% include partials/header.ejs %>
+	</div>
+	<div class="cat_unav">
+    <% include partials/user_navigation.ejs %>
+	</div>
+    <main>
+		<div class="category">
+				<h2>Search for your favourite movies here!</h2>
+			<section>
+				<%
+				console.log("Categories:"+data.categories);
+				for(var i=0; i< data.categories.length; i++){ %>
+					<article>
+						<header class="heading1">
+							<h3><%= data.categories[i] %></h3>
+						</header>
+						<%
+						for(var j=0; j< data.items.length;j++){
+	          	if(data.categories[i] === data.items[j]._doc.catalogCategory){ %>
+								<p><a href="/categories/item/<%= data.items[j]._doc.itemName %>"><%= data.items[j]._doc.itemName %></a></p>
+							<% }
+	           }
+	           %>
+					</article>
+					<br>
+				<% } %>
+			</section>
+		</div>
+		</main>
+<div class="cat_snav">
+    <% include partials/site_navigation.ejs %>
+	</div>
+	<div class="cat_footer">
+    <% include partials/footer.ejs %>
+	</div>
+  </body>
+</html>

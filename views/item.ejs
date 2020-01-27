@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MoviesCorner</title>
+    <link rel="stylesheet" type="text/css" href="/../../stylesheets/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Salsa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lemon' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Shojumaru' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+		<div class="item_header">
+    <% include partials/header1.ejs %>
+	</div>
+	<div class="item_unav">
+    <% include partials/user_navigation.ejs %>
+	</div>
+    <main>
+      <div class="items">
+        <p><a class="itemsa" href="/">Home > </a><a class="itemsa" href="/categories">Categories > </a><a class="itemsa" href="#"><%= data.item.itemName %> </a></p>
+        <div class="div1">
+          <img class="img2" src='<%= data.item._doc.imgUrl %>' alt="<%= data.item._doc.itemName %>">
+          <h2><%= data.item._doc.itemName %></h2>
+          <h3><%= data.item._doc.catalogCategory %></h3>
+          <%
+			for(var j=0; j< data.item._doc.rating;j++){%>
+			<span class="fa fa-star checked"></span>
+			<% } %>
+			<%
+			for(var j=5; j > data.item._doc.rating;j--){%>
+			<span class="fa fa-star"></span>
+			<% } %>
+
+  <!--        <span class = "button1"><input type="button" onclick="/myItems" value="Save"></span>
+          <span class = "button1"><input type="button" onclick="#" value="Watch Now"></span> -->
+					<form action="/myItems/add/<%= data.item._doc.itemName %>" class="button1" method="get">
+							<input type="hidden" name="itemCode" value="<%= data.item._doc.itemCode %>" />
+							<input type="hidden" name="itemName" value="<%= data.item._doc.itemName %>" />
+							<input type="submit" value="Save"></form>
+				<!--	<form action="#" class="button1"><input type="submit" value="Watch Now"></form> -->
+					<form action="/categories/item/<%= data.item._doc.itemName%>/feedback" class="button1"><input type="submit" value="Rate It"></form>
+          <p>Cast: <%= data.item._doc.cast %></p>
+          <p>Director: <%= data.item._doc.director %></p>
+          <br>
+          <p class="p1"><%= data.item._doc.description %></p>
+        </div>
+					<form action="/categories" class="button1"><input type="submit" value="Continue Browsing"></form>
+      </div>
+    </main>
+		<div class="item_snav">
+    <% include partials/site_navigation.ejs %>
+	</div>
+	<div class="item_footer">
+    <% include partials/footer.ejs %>
+	</div>
+  </body>
+</html>

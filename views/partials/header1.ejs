@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>MoviesCorner</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <header class="icon">
+      <p class="headlogin">
+				<% if(data==undefined || data.user==null){%>
+							Not Logged In
+
+			        <%}else{%>
+			    				<%= data.user.firstName+' '+ data.user.lastName%>
+			    		<% } %>
+
+						<%#}else{
+			          if(data.user.firstName==undefined){%>
+								       <%#= data.user._firstName+' '+data.user._lastName%>
+			          <%# }else{ %>
+			                <%#= data.user.firstName+' '+data.user.lastName%>
+						<%# } }%>
+			</p>
+      <h1><img class="img1" src="./../../images/2-1.jpg" alt="logo">
+          MOVIES CORNER
+      </h1>
+    </header>
+  </body>
+</html>
